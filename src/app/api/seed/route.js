@@ -9,18 +9,22 @@ export async function POST(request) {
   try {
     await connectDB();
 
-    // 1. Create Admin User
+    // 1. Create or Update Admin User
     const adminEmail = process.env.ADMIN_EMAIL || 'admin@sozluk.com';
     const adminPassword = process.env.ADMIN_PASSWORD || 'admin123';
+    const hashedPassword = await bcrypt.hash(adminPassword, 10);
 
     const adminExists = await AdminUser.findOne({ email: adminEmail });
     if (!adminExists) {
-      const hashedPassword = await bcrypt.hash(adminPassword, 10);
       await AdminUser.create({
         email: adminEmail,
         password: hashedPassword,
         name: 'Super Admin'
       });
+    } else {
+      // Update password if admin already exists
+      adminExists.password = hashedPassword;
+      await adminExists.save();
     }
 
     // 2. Create Categories
