@@ -10,11 +10,14 @@ export async function POST(request) {
     await connectDB();
 
     // 1. Create Admin User
-    const adminExists = await AdminUser.findOne({ email: 'admin@sozluk.com' });
+    const adminEmail = process.env.ADMIN_EMAIL || 'admin@sozluk.com';
+    const adminPassword = process.env.ADMIN_PASSWORD || 'admin123';
+
+    const adminExists = await AdminUser.findOne({ email: adminEmail });
     if (!adminExists) {
-      const hashedPassword = await bcrypt.hash('admin123', 10);
+      const hashedPassword = await bcrypt.hash(adminPassword, 10);
       await AdminUser.create({
-        email: 'admin@sozluk.com',
+        email: adminEmail,
         password: hashedPassword,
         name: 'Super Admin'
       });
