@@ -1,0 +1,344 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  transition: var(--transition);
+  padding: 28px 0;
+  background: transparent;
+}
+
+.header.scrolled {
+  padding: 14px 0;
+  background: var(--glass-bg);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.navContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  color: var(--color-white);
+  transition: var(--transition);
+}
+
+.header.scrolled .logo {
+  color: var(--color-dark);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+}
+
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+}
+
+.navLink {
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  color: rgba(255, 255, 255, 0.85);
+  transition: var(--transition);
+  position: relative;
+}
+
+.header.scrolled .navLink {
+  color: var(--color-text-secondary);
+}
+
+.navLink::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: currentColor;
+  transition: width 0.4s var(--ease-out);
+}
+
+.navLink:hover {
+  color: var(--color-white);
+}
+
+.header.scrolled .navLink:hover {
+  color: var(--color-dark);
+}
+
+.navLink:hover::after {
+  width: 100%;
+}
+
+.navItem {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.arrow {
+  font-size: 9px;
+  margin-left: 6px;
+  vertical-align: middle;
+  transition: transform 0.3s ease;
+  display: inline-block;
+}
+
+.navItem:hover .arrow {
+  transform: rotate(180deg);
+}
+
+.hasMegaMenu {
+  position: static;
+}
+
+.megaMenu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  width: max-content;
+  max-width: 900px;
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 32px;
+  opacity: 0;
+  visibility: hidden;
+  transition: var(--transition);
+  box-shadow: var(--shadow-xl);
+  margin-top: 16px;
+}
+
+.header:not(.scrolled) .megaMenu {
+  background: var(--color-dark-secondary);
+  border-color: var(--glass-border-dark);
+}
+
+.hasMegaMenu:hover .megaMenu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+.megaMenuGrid {
+  display: flex;
+  gap: 48px;
+}
+
+.megaMenuCol {
+  display: flex;
+  flex-direction: column;
+  min-width: 180px;
+}
+
+
+.megaMenuHeading {
+  font-family: var(--font-heading);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-dark);
+  margin-bottom: 16px;
+  display: inline-block;
+  transition: var(--transition);
+}
+
+.megaMenuHeading:hover {
+  color: var(--color-primary);
+}
+
+.header:not(.scrolled) .megaMenuHeading {
+  color: var(--color-white);
+}
+
+.megaMenuList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.megaMenuLink {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  transition: var(--transition);
+}
+
+.megaMenuLink:hover {
+  color: var(--color-primary);
+  transform: translateX(4px);
+}
+
+.header:not(.scrolled) .megaMenuLink {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.header:not(.scrolled) .megaMenuLink:hover {
+  color: var(--color-white);
+}
+
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 24px;
+  height: 16px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 101;
+}
+
+.hamburgerLine {
+  width: 100%;
+  height: 1.5px;
+  background-color: var(--color-white);
+  transition: var(--transition);
+}
+
+.header.scrolled .hamburgerLine {
+  background-color: var(--color-dark);
+}
+
+.hamburgerLine1 {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.hamburgerLine2 {
+  opacity: 0;
+}
+
+.hamburgerLine3 {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+@media (max-width: 992px) {
+  .hamburger {
+    display: flex;
+  }
+  
+  .header.scrolled .hamburgerLine1,
+  .header.scrolled .hamburgerLine3 {
+     background-color: var(--color-dark);
+  }
+
+  .nav {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 100%;
+    height: 100dvh;
+    background: var(--color-white);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+    transition: right 0.5s var(--ease-out);
+  }
+
+  .nav.mobileOpen {
+    right: 0;
+  }
+
+  .navLinks {
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+    overflow-y: auto;
+    padding: 20px;
+  }
+  
+  .navItem {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hasMegaMenu {
+    position: relative;
+  }
+
+  .megaMenu {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    transform: none !important;
+    box-shadow: none !important;
+    border: none !important;
+    background: transparent !important;
+    margin-top: 12px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    padding: 0 !important;
+    display: none;
+  }
+
+  .hasMegaMenu:hover .megaMenu {
+    display: block;
+  }
+
+  .megaMenuGrid {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 20px !important;
+    width: 100% !important;
+  }
+
+  .megaMenuCol {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  .megaMenuList {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    width: 100% !important;
+  }
+
+  .megaMenuLink {
+    display: block !important;
+    text-align: center !important;
+    width: 100% !important;
+    white-space: normal !important;
+    color: var(--color-text-secondary) !important;
+  }
+
+  .megaMenuHeading {
+    display: block !important;
+    text-align: center !important;
+    width: 100% !important;
+    color: var(--color-dark) !important;
+  }
+
+  .navLink {
+    color: var(--color-dark);
+    font-size: 16px;
+    letter-spacing: 1px;
+  }
+  
+  .nav.mobileOpen + .hamburger .hamburgerLine {
+      background-color: var(--color-dark);
+  }
+}

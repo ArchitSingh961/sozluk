@@ -1,0 +1,60 @@
+.errorContainer {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  background-color: var(--color-bg);
+}
+
+.content {
+  max-width: 500px;
+  width: 100%;
+  text-align: center;
+  background: var(--color-white);
+  padding: 60px 40px;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xl);
+  border: 1px solid var(--color-border-light);
+}
+
+.iconWrapper {
+  width: 80px;
+  height: 80px;
+  background-color: #fef2f2; /* Light red */
+  color: #dc2626; /* Dark red */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 30px;
+}
+
+.title {
+  font-size: 28px;
+  margin-bottom: 16px;
+  color: var(--color-dark);
+}
+
+.description {
+  color: var(--color-text-secondary);
+  margin-bottom: 32px;
+  line-height: 1.6;
+}
+
+.actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 480px) {
+  .actions {
+    flex-direction: column;
+  }
+  
+  .actions a, .actions button {
+    width: 100%;
+  }
+}

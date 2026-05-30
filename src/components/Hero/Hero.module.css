@@ -1,0 +1,139 @@
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.bgWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.bgImage {
+  width: 100%;
+  height: 100%;
+  background-image: url('/images/hero.png');
+  background-size: cover;
+  background-position: center;
+  animation: zoomBg 25s linear infinite alternate;
+}
+
+@keyframes zoomBg {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.06);
+  }
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.2) 40%, rgba(0, 0, 0, 0.5) 100%),
+    linear-gradient(135deg, rgba(0, 0, 0, 0.5) 0%, transparent 60%);
+}
+
+.content {
+  width: 100%;
+  z-index: 1;
+  padding-top: 100px;
+}
+
+.textContent {
+  max-width: 720px;
+}
+
+.brandWrapper {
+  margin-bottom: 32px;
+}
+
+.brand {
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 6px;
+  color: rgba(255, 255, 255, 0.5);
+  display: inline-block;
+  text-transform: uppercase;
+}
+
+.title {
+  font-size: clamp(44px, 6vw, 80px);
+  font-weight: 600;
+  color: var(--color-white);
+  line-height: 1.04;
+  margin-bottom: 28px;
+  letter-spacing: -0.03em;
+}
+
+.subtitle {
+  font-size: clamp(15px, 1.8vw, 18px);
+  color: rgba(255, 255, 255, 0.55);
+  margin-bottom: 48px;
+  max-width: 500px;
+  font-weight: 400;
+  line-height: 1.7;
+  letter-spacing: 0.2px;
+}
+
+.actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.scrollIndicator {
+  position: absolute;
+  bottom: 48px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255, 255, 255, 0.3);
+  z-index: 1;
+}
+
+@media (max-width: 768px) {
+  .content {
+    padding-top: 100px;
+  }
+
+  .brandWrapper {
+    margin-bottom: 16px;
+  }
+
+  .title {
+    font-size: clamp(28px, 8vw, 44px);
+    line-height: 1.15;
+    margin-bottom: 20px;
+    letter-spacing: -0.01em;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
+
+  .subtitle {
+    font-size: 14px;
+    margin-bottom: 36px;
+    line-height: 1.5;
+  }
+
+  .actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .actions .btn {
+    width: 100%;
+  }
+}
