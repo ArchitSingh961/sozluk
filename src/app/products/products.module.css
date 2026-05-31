@@ -58,7 +58,7 @@
   display: flex;
   flex: 2;
   min-width: 0;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .filters {
